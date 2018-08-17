@@ -48,7 +48,7 @@ const rootReducer = (state = initialState, action) => {
 
         case ADD_TICKET:
 
-            if (Object.keys(tickets).length === state.lotSize) {
+            if (Object.keys(state.tickets).length === state.lotSize) {
                 return state;
             }
 

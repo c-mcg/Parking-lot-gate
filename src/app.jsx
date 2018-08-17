@@ -15,8 +15,6 @@ import AdminOptions from './components/admin-options'
 
 import './app.less'
 
-const NUM_SPACES = 120;
-
 const mapStateToProps = (state) => {
     return {
         adminPassword: state.adminPassword,
