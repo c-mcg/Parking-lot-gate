@@ -1,3 +1,6 @@
+A small app for managing a parking lot gate.
+
+Written with React and Redux, as well as Jest and Enzyme for testing
 
 ## Setup
 
