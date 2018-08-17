@@ -1,0 +1,38 @@
+
+@import "../../../less/variables";
+
+.Button {
+
+    font-family: @font-primary;
+    font-size: 16px;
+
+    font-weight: bold;
+
+    padding: 8px;
+    display: inline-block;
+    margin: 8px;
+
+    cursor: pointer;
+
+    background-color: @color-primary;
+
+    border: 0;
+
+    .box-shadow();
+    .border-radius(4px);
+
+    &:hover {
+        background-color: @color-primary-light;
+        .box-shadow(2px, 6px);
+    }
+
+    &:focus {
+        outline: none;
+        background-color: @color-primary-light;
+    }
+
+    &:active {
+        background-color: lighten(@color-primary-light, 5%);
+    }
+
+}

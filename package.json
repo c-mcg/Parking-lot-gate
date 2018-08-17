@@ -1,0 +1,59 @@
+{
+  "name": "parking-lot-manager",
+  "version": "1.0.0",
+  "description": "A simple demo app for a parking lot gate",
+  "main": " ",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "react-redux": "^5.0.7",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
+    "babel-loader": "^7.1.5",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^1.0.0",
+    "enzyme": "^3.4.3",
+    "enzyme-adapter-react-16": "^1.2.0",
+    "enzyme-redux": "^0.2.1",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.5.0",
+    "jest-canvas-mock": "^1.1.0",
+    "jsbarcode": "^3.9.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "quagga": "^0.12.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "redux": "^4.0.0",
+    "redux-test-utils": "^0.2.2",
+    "sha256": "^0.2.0",
+    "style-loader": "^0.22.1",
+    "svg-inline-loader": "^0.8.0",
+    "uniqid": "^5.0.3",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-serve": "^2.0.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --watch",
+    "run": "webpack-serve --content public"
+  },
+  "author": "Connor McGrogan",
+  "license": "ISC",
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ],
+    "unmockedModulePathPatterns": [
+      "node_modules/react/",
+      "node_modules/enzyme/"
+    ],
+    "moduleNameMapper": {
+      "\\.svg$": "identity-obj-proxy",
+      "\\.(css|less)$": "identity-obj-proxy"
+    }
+  }
+}

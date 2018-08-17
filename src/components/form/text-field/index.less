@@ -1,0 +1,38 @@
+
+@import "../../../less/variables";
+
+.TextField, .NumberField, .CreditCardField, .PasswordField {
+
+    text-align: center;
+    padding: 8px;
+
+    width: 100%;
+
+    &-label {
+        width: 90%;
+        margin: 0 auto;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    &-inputContainer {
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    &-input {
+        width: 100%;
+        padding: 0 4px;
+
+        font-size: 16px;
+        line-height: 32px;
+
+        .border-radius(4px);
+
+        &:focus {
+            outline: none;
+            .box-shadow(0px, 1px, 3px, @color-primary);
+        }
+    }
+
+}
