@@ -6,4 +6,10 @@ Written with React and Redux, as well as Jest and Enzyme for testing
 
 run `npm install` in project folder
 
-run `test.bat` or `npm run-script run`
+## Running
+
+run `run.bat` or `npm run-script run`
+
+## Testing
+
+run `test.bat` or `npm run-script test`
