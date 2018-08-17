@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "A simple demo app for a parking lot gate",
   "main": " ",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "react-redux": "^5.0.7",
     "babel-core": "^6.26.3",
