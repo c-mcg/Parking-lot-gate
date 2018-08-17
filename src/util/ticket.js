@@ -117,7 +117,7 @@ export default class Ticket {
             this._endTime = new Date();
         }
 
-        var visitLength = (this.endTime.getTime() - this.startTime.getTime()) + ONE_HOUR_IN_MS * 4;
+        var visitLength = (this.endTime.getTime() - this.startTime.getTime());
 
         var rateIndex = 0;
         var rate = STARTING_RATE;
