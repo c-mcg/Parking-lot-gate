@@ -23,7 +23,8 @@ const initialState = {
     adminPassword: null,
     currentPassword: null,
     view: -1,
-    adminSettingsOpen: true
+    adminSettingsOpen: true,
+    lotSize: 120
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -46,6 +47,11 @@ const rootReducer = (state = initialState, action) => {
             return Object.assign({}, state);
 
         case ADD_TICKET:
+
+            if (Object.keys(tickets).length === state.lotSize) {
+                return state;
+            }
+
             var tickets = Object.assign({}, state.tickets);
             tickets[action.payload.id] = action.payload;
 
