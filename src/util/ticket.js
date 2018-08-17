@@ -127,10 +127,6 @@ export default class Ticket {
             rateIndex++;
         }
 
-        if (rate !== STARTING_RATE) {
-            rate *= 1.5;
-        }
-
         this._rate = rate;
         return rate;
     }
