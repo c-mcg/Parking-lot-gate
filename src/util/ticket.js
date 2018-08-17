@@ -4,7 +4,7 @@ import JsBarcode from 'jsbarcode'
 
 import {formatDate, formatTime} from './index'
 
-import {ONE_HOUR_IN_MS} from './index'
+import {ONE_HOUR_IN_MS} from './constants'
 
 const RATE_TIME_LENGTHS = [
     ONE_HOUR_IN_MS,
@@ -117,7 +117,7 @@ export default class Ticket {
             this._endTime = new Date();
         }
 
-        var visitLength = this.endTime.getTime() - this.startTime.getTime();
+        var visitLength = (this.endTime.getTime() - this.startTime.getTime()) + ONE_HOUR_IN_MS * 4;
 
         var rateIndex = 0;
         var rate = STARTING_RATE;
