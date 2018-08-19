@@ -28,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         ticket: state.generatedTicket,
+        lotFull: Object.keys(state.tickets).length >= state.lotSize
     };
 };
 
@@ -47,6 +48,11 @@ class EnterOptions extends React.Component {
 
     //param ticket for testing
     createTicket(e, ticket=null) {
+
+        if (this.props.lotFull) {
+            return ;
+        }
+
         ticket = ticket ? ticket : new Ticket();
 
         ticket.generateImage(
@@ -57,7 +63,7 @@ class EnterOptions extends React.Component {
                     this.props.setGeneratedTicket(ticket)
                 })
             },
-            () => this.setState({error: true})
+            () => this.setState({error: 'Could not generate ticket'})
         );
         
     }
@@ -101,30 +107,25 @@ class EnterOptions extends React.Component {
             <OptionsPane title="Entering">
                 <div className={cls(this)}>
 
-                {this.state.error &&
+                <div>
+                    {!this.props.ticket && !this.props.lotFull &&
+                        <Button onClick={this.createTicket} text="Create ticket"/>
+                    }
+
                     <div className={cls(this, 'error')}>
-                        Could not generate ticket
-                    </div>
-                }
-
-                {!this.state.error &&
-
-                    <div>
-                        {!this.props.ticket &&
-                            <Button onClick={this.createTicket} text="Create ticket"/>
-                        }
-
-                        {this.props.ticket &&
-                            <div>
-                                <TicketComponent ticket={this.props.ticket}/>
-
-                                <Button text="Print" onClick={this.printTicket}/>
-                                <Button text="Download" onClick={this.downloadTicket}/>
-                            </div>
-                        }
+                        {this.state.error && this.state.error}
+                        {this.props.lotFull && 'Lot full'}
                     </div>
 
-                }
+                    {this.props.ticket &&
+                        <div>
+                            <TicketComponent ticket={this.props.ticket}/>
+
+                            <Button text="Print" onClick={this.printTicket}/>
+                            <Button text="Download" onClick={this.downloadTicket}/>
+                        </div>
+                    }
+                </div>
 
                 </div>
             </OptionsPane>

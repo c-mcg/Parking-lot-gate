@@ -106,3 +106,11 @@ export const toggleAdminSettings = (dispatch, adminSettingsOpen) => {
         payload: adminSettingsOpen ? true : false
     })
 }
+
+export const SET_LOT_SIZE = "SET_LOT_SIZE";
+export const setLotSize = (dispatch, lotSize) => {
+    dispatch({
+        type: SET_LOT_SIZE,
+        payload: lotSize
+    })
+}

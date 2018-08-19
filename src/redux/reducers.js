@@ -12,7 +12,8 @@ import {
     REMOVE_TICKET,
     SET_ADMIN_PASSWORD,
     SET_VIEW,
-    TOGGLE_ADMIN_SETTINGS
+    TOGGLE_ADMIN_SETTINGS,
+    SET_LOT_SIZE
 } from './actions'
 
 const initialState = {
@@ -48,7 +49,7 @@ const rootReducer = (state = initialState, action) => {
 
         case ADD_TICKET:
 
-            if (Object.keys(state.tickets).length === state.lotSize) {
+            if (Object.keys(state.tickets).length >= state.lotSize) {
                 return state;
             }
 
@@ -88,6 +89,16 @@ const rootReducer = (state = initialState, action) => {
         case TOGGLE_ADMIN_SETTINGS:
             var newState = Object.assign({}, state);
             newState.adminSettingsOpen = action.payload;
+            return newState;
+
+        case SET_LOT_SIZE:
+
+            if (action.payload < Object.keys(state.tickets).length) {
+                return state;
+            }
+
+            var newState = Object.assign({}, state);
+            newState.lotSize = action.payload;
             return newState;
                 
     }
