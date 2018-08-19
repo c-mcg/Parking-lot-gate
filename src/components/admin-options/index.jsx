@@ -1,20 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import sha256 from 'sha256'
+
 import {connect} from 'react-redux'
 
-import { setAdminPassword, setView, toggleAdminSettings } from "../../redux/actions";
+import { 
+    setAdminPassword,
+    setView,
+    toggleAdminSettings,
+    setLotSize
+} from "../../redux/actions";
 
 import OptionsPane from '../options-pane'
 import Button from '../form/button'
 import TextField from '../form/text-field'
 import Form from '../form'
 import PasswordField from '../form/text-field/password'
+import NumberField from '../form/text-field/number'
+
 
 import {cls} from "../../util"
 import {VIEWS, salt} from '../../util/constants'
-
-import sha256 from 'sha256'
 
 import './index.less'
 
@@ -28,6 +35,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         closeAdminSettings: () => {
             toggleAdminSettings(dispatch, false);
+        },
+        setLotSize: (lotSize) => {
+            setLotSize(dispatch, lotSize);
         }
     };
 };
@@ -35,6 +45,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         adminPassword: state.adminPassword,
+        lotSize: state.lotSize
     };
 };
 
@@ -60,6 +71,7 @@ class AdminOptions extends React.Component {
         this.closeChangePassword = this.closeChangePassword.bind(this);
 
         this.onValidatePassword = this.onValidatePassword.bind(this);
+        this.onChangeLotSize = this.onChangeLotSize.bind(this);
     }
 
     setAdminPassword(values) {
@@ -99,6 +111,14 @@ class AdminOptions extends React.Component {
         }
 
         return values.password;//For testing
+    }
+
+    onChangeLotSize(values) {
+        if (!values.lotSize || values.lotSize === "") {
+            return;
+        }
+
+        this.props.setLotSize(values.lotSize);
     }
 
     onValidatePassword(values) {
@@ -202,6 +222,11 @@ class AdminOptions extends React.Component {
                                         <Button text="Leave View" onClick={this.setViewLeave}/>
                                         <Button text="Both (testing only)" onClick={this.setViewBoth}/>
                                     </div>
+
+                                    <Form onSubmit={this.onChangeLotSize}>
+                                        <NumberField name="lotSize" label={'Lot Size: ' + this.props.lotSize}/> 
+                                        <Button submit text="Change lot size"/>
+                                    </Form>
 
                                     <Button text="Change password" onClick={this.openChangePassword}/>
                                     <Button text="Close admin settings (Ctrl + Shift + E)" onClick={this.props.closeAdminSettings} className={cls(this, 'closeButton')}/>
