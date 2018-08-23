@@ -37,7 +37,8 @@ function createShallow(state, store=null) {
 
 test('EnterOptions generate ticket', () => {
     var state = {
-        generatedTicket: null
+        generatedTicket: null,
+        tickets: {}
     }
 
     var store = createMockStore(state);
@@ -62,6 +63,9 @@ test('EnterOptions download ticket', () => {
 
     var state = {
         generatedTicket: ticket,
+        tickets: {},
+        lotSize: 1,
+        gateOpen: false
     }
 
     var store = createMockStore(state);
