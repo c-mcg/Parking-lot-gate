@@ -187,7 +187,7 @@ class AdminOptions extends React.Component {
                             <div className={cls(this, 'error')}>
                                 {this.state.error && this.state.error}
                             </div>
-                            <Button submit text="submit"/>
+                            <Button submit text="Submit"/>
                         </Form>
                     }
 

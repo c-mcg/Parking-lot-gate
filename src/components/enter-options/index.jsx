@@ -47,13 +47,13 @@ class EnterOptions extends React.Component {
     }
 
     //param ticket for testing
-    createTicket(e, ticket=null) {
+    createTicket(e) {
 
         if (this.props.lotFull) {
-            return ;
+            return;
         }
 
-        ticket = ticket ? ticket : new Ticket();
+        var ticket = new Ticket();
 
         ticket.generateImage(
             () =>  {

@@ -18,10 +18,11 @@ test('LeaveOptions onUploadClicked', () => {
         scanning: true
     })
 
-    var instance = leaveOptions.instance();
+    var uploadTicketButton = leaveOptions.find('[text="Upload ticket"]');
+    expect(uploadTicketButton.length).toBe(1);
 
-    instance.onUploadClicked();
-
+   
+    uploadTicketButton.simulate('click');
     expect(leaveOptions.state().scanning).toBe(false);
 })
 
@@ -30,12 +31,13 @@ test('LeaveOptions onScanClicked', () => {
         scanning: true
     })
 
-    var instance = leaveOptions.instance();
+    var scanTicketButton = leaveOptions.find('[text="Scan ticket"]');
+    expect(scanTicketButton.length).toBe(1);
 
-    instance.onScanClicked();
+    scanTicketButton.simulate('click');
     expect(leaveOptions.state().scanning).toBe(true);
 
-    instance.onScanClicked();
+    scanTicketButton.simulate('click');
     expect(leaveOptions.state().scanning).toBe(false);
 })
 
@@ -58,23 +60,21 @@ test('LeaveOptions onBarcodeScanned', () => {
 
 })
 
-test('LeaveOptions onScanClicked', () => {
-    const validId = "123";
-
-    var leaveOptions = createShallow({
-        tickets: {123: "mockTicket"},
-    })
-
-    leaveOptions.instance().onScanClicked();
-    expect(leaveOptions.state().scanning).toBe(true);
-})
-
 test('LeaveOptions onSubmitPayment', () => {
-    const validId = "123";
 
-    var leaveOptions = createShallow({
-        tickets: {123: "mockTicket"},
-    })
+    var leaveOptions = createShallow()
+    var ticket = {
+        rate: 0
+    }
+
+    leaveOptions.setProps({
+        ticket
+    });
+
+    expect(leaveOptions.find('[name="name"]').length).toBe(1);
+    expect(leaveOptions.find('[name="cardNumber"]').length).toBe(1);
+    expect(leaveOptions.find('[name="securityCode"]').length).toBe(1);
+    expect(leaveOptions.find('[text="Pay ticket"]').length).toBe(1);
 
     var instance = leaveOptions.instance();
 

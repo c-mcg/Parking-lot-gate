@@ -31,30 +31,41 @@ class TicketMock {
 
 }
 
-function createShallow(state, store=null) {
-    return shallowWithStore(<EnterOptions/>, store ? store : createMockStore(state)).dive({context: state});
+function createShallow(state) {
+    return shallowWithStore(<EnterOptions/>, createMockStore(state)).dive({context: state});
 }
 
 test('EnterOptions generate ticket', () => {
     var state = {
         generatedTicket: null,
-        tickets: {}
+        tickets: {},
     }
 
-    var store = createMockStore(state);
+    const enterOptions = createShallow(state);
 
-    const enterOptions = createShallow(state, store);
-    const instance = enterOptions.instance();
+    var createTicketButton = enterOptions.find('[text="Create ticket"]');
+    expect(createTicketButton.length).toBe(1);
 
-    var ticket = new TicketMock();
-    instance.createTicket(null, ticket);
-    expect(enterOptions.state().error).toBeTruthy();
-    expect(ticket._generateImage.mock.calls.length).toBe(1);
-
-
-    instance.createTicket(null, ticket);
+    createTicketButton.simulate('click');
     expect(enterOptions.state().error).not.toBeTruthy();
-    expect(ticket._generateImage.mock.calls.length).toBe(2);
+    expect(enterOptions.state().ticket).not.toBe(null);
+})
+
+test('EnterOptions generate ticket lot full', () => {
+    var state = {
+        generatedTicket: null,
+        tickets: {0: jest.fn()},
+        lotSize: 1
+    }
+
+    const enterOptions = createShallow(state);
+
+    var createTicketButton = enterOptions.find('[text="Create ticket"]');
+    expect(createTicketButton.length).toBe(0);
+
+    enterOptions.instance().createTicket();
+    expect(enterOptions.state().error).not.toBeTruthy();
+    expect(enterOptions.state().ticket).not.toBeTruthy();
 })
 
 test('EnterOptions download ticket', () => {
@@ -63,16 +74,32 @@ test('EnterOptions download ticket', () => {
 
     var state = {
         generatedTicket: ticket,
-        tickets: {},
-        lotSize: 1,
-        gateOpen: false
+        tickets: {}
     }
 
     var store = createMockStore(state);
 
-    const enterOptions = createShallow(state, store);
+    const enterOptions = createShallow(state);
 
-    enterOptions.instance().downloadTicket();
+    var downloadButton = enterOptions.find('[text="Download"]');
+    expect(downloadButton.length).toBe(1);
+
+    var appendChild = jest.fn()
+    var removeChild = jest.fn()
+
+    document.body.appendChild = appendChild;
+    document.body.removeChild = removeChild;
+
+    downloadButton.simulate('click');
+
+    expect(appendChild).toBeCalled
+
+    var downloadLink = appendChild.mock.calls[0][0]
+    expect(downloadLink.href).toBeTruthy();
+    expect(downloadLink.download).toBeTruthy();
+
+    expect(removeChild).toBeCalled
+    expect(removeChild.mock.calls[0][0]).toBe(downloadLink);
 })
 
 test('EnterOptions print ticket', () => {
@@ -82,13 +109,14 @@ test('EnterOptions print ticket', () => {
     var state = {
         gatOpen: true,
         generatedTicket: ticket,
-        tickets: []
+        tickets: {}
     }
 
-    var store = createMockStore(state);
-
-    const enterOptions = createShallow(state, store);
+    const enterOptions = createShallow(state);
     const instance = enterOptions.instance();
+
+    var printButton = enterOptions.find('[text="Print"]');
+    expect(printButton.length).toBe(1);
 
     var open = global.open = jest.fn();
 
@@ -103,7 +131,7 @@ test('EnterOptions print ticket', () => {
 
     open.mockReturnValueOnce(mockWindow);
 
-    instance.printTicket()
+    printButton.simulate('click');
 
     expect(open).toBeCalled();
     expect(mockWindow.document.write).toBeCalled();
