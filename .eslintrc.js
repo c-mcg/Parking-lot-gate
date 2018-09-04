@@ -123,7 +123,7 @@ module.exports = {
         "max-statements-per-line": "error",
         "multiline-comment-style": "error",
         "new-parens": "off",
-        "newline-after-var": "off",
+        "newline-after-var": "error",
         "newline-before-return": "off",
         "newline-per-chained-call": "error",
         "no-alert": "error",

@@ -19,7 +19,7 @@ export default class SVG extends React.Component {
 
     render() {
 
-        var svg = SVGS[this.props.name];
+        let svg = SVGS[this.props.name];
 
         if (!svg) {
             return null;

@@ -14,11 +14,11 @@ function createShallow(state, store=null) {
 }
 
 test('LeaveOptions onUploadClicked', () => {
-    var leaveOptions = createShallow({
+    let leaveOptions = createShallow({
         scanning: true
     })
 
-    var uploadTicketButton = leaveOptions.find('[text="Upload ticket"]');
+    let uploadTicketButton = leaveOptions.find('[text="Upload ticket"]');
     expect(uploadTicketButton.length).toBe(1);
 
    
@@ -27,11 +27,11 @@ test('LeaveOptions onUploadClicked', () => {
 })
 
 test('LeaveOptions onScanClicked', () => {
-    var leaveOptions = createShallow({
+    let leaveOptions = createShallow({
         scanning: true
     })
 
-    var scanTicketButton = leaveOptions.find('[text="Scan ticket"]');
+    let scanTicketButton = leaveOptions.find('[text="Scan ticket"]');
     expect(scanTicketButton.length).toBe(1);
 
     scanTicketButton.simulate('click');
@@ -44,12 +44,12 @@ test('LeaveOptions onScanClicked', () => {
 test('LeaveOptions onBarcodeScanned', () => {
     const validId = "123";
 
-    var leaveOptions = createShallow({
+    let leaveOptions = createShallow({
         tickets: {123: "mockTicket"},
         scanning: true,
     })
 
-    var instance = leaveOptions.instance();
+    let instance = leaveOptions.instance();
 
     instance.onBarcodeScanned({codeResult: {code: false}});
     expect(leaveOptions.state().scanning).toBe(false);
@@ -62,8 +62,8 @@ test('LeaveOptions onBarcodeScanned', () => {
 
 test('LeaveOptions onSubmitPayment', () => {
 
-    var leaveOptions = createShallow()
-    var ticket = {
+    let leaveOptions = createShallow()
+    let ticket = {
         rate: 0
     }
 
@@ -76,9 +76,9 @@ test('LeaveOptions onSubmitPayment', () => {
     expect(leaveOptions.find('[name="securityCode"]').length).toBe(1);
     expect(leaveOptions.find('[text="Pay ticket"]').length).toBe(1);
 
-    var instance = leaveOptions.instance();
+    let instance = leaveOptions.instance();
 
-    var testData = [
+    let testData = [
         {
             data: {
                 name: ""
@@ -110,7 +110,7 @@ test('LeaveOptions onSubmitPayment', () => {
 
     testData.forEach((call) => {
         instance.onSubmitPayment(call.data);
-        var error = leaveOptions.state().paymentError;
+        let error = leaveOptions.state().paymentError;
 
         if (call.error) {
             expect(error).toBeTruthy();

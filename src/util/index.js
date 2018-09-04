@@ -5,21 +5,24 @@
 exports.cls = function(reactInstance, subName=null, modifiers=null) {
     if (reactInstance == null) return;
 
-    var name = reactInstance.type ? reactInstance.type.displayName : null;
+    let name = reactInstance.type ? reactInstance.type.displayName : null;
+
     if (!name) {
         name = reactInstance.constructor.name;
     }
-    var base = name.split(".").join("-");
+
+    let base = name.split(".").join("-");
+    let output = [];
+
     base = subName != null && subName !== "" ? base + "-" + subName : base;
-    var output = []
-    output[0] = base
+
     if (modifiers != null) {
-        for (var key of Object.keys(modifiers)) {
-            if (modifiers[key] != undefined && modifiers[key]) {
-                output.push(base + "--" + key);
-            }
-        }
+        output = Object.keys(modifiers).map((key) => {
+            return modifiers[key] ? base + "--" + key : ""
+        });
     }
+    output.unshift(base);
+
     return output.join(" ");
 }
 
@@ -28,12 +31,12 @@ exports.splitStringIntoChunks = function(str, chunkSize) {
         return [str];
     }
 
-    var chunks = new Array(Math.ceil(str.length / chunkSize)).fill(null);
+    const chunks = new Array(Math.ceil(str.length / chunkSize)).fill(null);
     
     return chunks.map(() => {
-        var size = Math.min(str.length, chunkSize);
+        const size = Math.min(str.length, chunkSize);
+        const chunk = str.substring(0, size);
 
-        var chunk = str.substring(0, size);
         str = str.substring(size, str.length);
 
         return chunk;
@@ -41,7 +44,7 @@ exports.splitStringIntoChunks = function(str, chunkSize) {
 }
 
 // Changes '1' to '01'
-var formatNum = (num) => {
+const formatNum = (num) => {
     return (num > 9 ? '' : '0') + num;
 }
 
@@ -70,7 +73,8 @@ exports.componentInstanceOf = (component, elementClass) => {
         return true;
     }
 
-    var type = component.type;
+    let type = component.type;
+
     do {
         if (type === elementClass || type instanceof elementClass) {
             return true;

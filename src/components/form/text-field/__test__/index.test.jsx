@@ -7,8 +7,8 @@ configure({ adapter: new Adapter() });
 import TextField from '../index'
 
 test('TextField onChange', () => {
-    var onChange = jest.fn();
-    var field = shallow(<TextField maxLength={4} value="tes" onChange={onChange}/>).find('input[type="text"]');
+    let onChange = jest.fn();
+    let field = shallow(<TextField maxLength={4} value="tes" onChange={onChange}/>).find('input[type="text"]');
 
     expect(field).toBeTruthy();
 

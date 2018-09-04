@@ -38,23 +38,23 @@ export default class Form extends React.Component {
     }
 
     onValueChanged(name, value) {
-        var values = Object.assign({}, this.state.values);
+        let values = Object.assign({}, this.state.values);
         values[name] = value;
         this.setState({values})
     }
 
     getInjectedChildren() {
-        var textFields = [];
+        let textFields = [];
 
-        var submitButton = null;
-        var submitButtonId = null
+        let submitButton = null;
+        let submitButtonId = null
 
-        var newChildren = React.Children.map(this.props.children, (child) => {
+        let newChildren = React.Children.map(this.props.children, (child) => {
             if (child === null) {
                 return null;
             }
 
-            var overrideProps = {}
+            let overrideProps = {}
 
             if (componentInstanceOf(child, TextField)) {
                 if (!child.props.name && !child.props.onChange) {

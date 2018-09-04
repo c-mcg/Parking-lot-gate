@@ -53,7 +53,7 @@ class EnterOptions extends React.Component {
             return;
         }
 
-        var ticket = new Ticket();
+        let ticket = new Ticket();
 
         ticket.generateImage(
             () =>  {
@@ -74,7 +74,7 @@ class EnterOptions extends React.Component {
             return;
         }
 
-        var downloadLink = document.createElement("a");
+        let downloadLink = document.createElement("a");
         downloadLink.href = this.props.ticket.image;
         downloadLink.download = "ticket.png";
 
@@ -91,7 +91,7 @@ class EnterOptions extends React.Component {
             return;
         }
 
-        var popup = window.open();
+        let popup = window.open();
         popup.document.write("<img src='" + this.props.ticket.image + "'/>");
         popup.focus(); //required for IE
         popup.print()

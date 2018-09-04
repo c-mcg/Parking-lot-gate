@@ -14,7 +14,7 @@ export default class TextField extends React.Component {
     }
 
     onChange(e) {
-        var value = e.target ? e.target.value : e;
+        let value = e.target ? e.target.value : e;
 
         if (this.props.maxLength && value.length > this.props.maxLength) {
             value = value.substring(0, this.props.maxLength);

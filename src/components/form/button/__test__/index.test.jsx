@@ -7,17 +7,17 @@ configure({ adapter: new Adapter() });
 import Button from '../index'
 
 test('Button submit', () => {
-    var onClick = jest.fn();
-    var button = mount(<Button submit onClick={onClick}/>).find('input[type="submit"]');
+    let onClick = jest.fn();
+    let button = mount(<Button submit onClick={onClick}/>).find('input[type="submit"]');
 
     expect(button).toBeTruthy();
     expect(button.instance().onClick).not.toBe(onClick);
 })
 
 test('Button click', () => {
-    var onClick = jest.fn();
+    let onClick = jest.fn();
 
-    var clickBtn = (button) => {
+    let clickBtn = (button) => {
         expect(button).toBeTruthy();
         button.simulate('click');
     }

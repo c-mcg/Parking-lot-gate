@@ -26,7 +26,7 @@ test('AdminOptions constructor', () => {
 test('AdminOptions set password', () => {
     const password = "test" ;   
 
-    var state = {
+    let state = {
         adminPassword: null
     }
 
@@ -51,7 +51,7 @@ test('AdminOptions set password', () => {
 
     expect(adminOptions.state().error).toBeTruthy();
 
-    var passHash = instance.setAdminPassword({
+    let passHash = instance.setAdminPassword({
         password,
         passwordConfirm: password
     })
@@ -63,8 +63,8 @@ test('AdminOptions set password', () => {
 })
 
 test('AdminOptions toggle change password', () => {
-    var password = sha256(salt + "test");
-    var state = {
+    let password = sha256(salt + "test");
+    let state = {
         adminPassword: password
     }
 
@@ -73,8 +73,8 @@ test('AdminOptions toggle change password', () => {
     expect(adminOptions.state().currentPassword).toBe(null);
     expect(adminOptions.state().settingPassword).toBe(false);
 
-    var passField = adminOptions.find('[name="password"]');
-    var submitButton = adminOptions.find('[text="Submit"]');
+    let passField = adminOptions.find('[name="password"]');
+    let submitButton = adminOptions.find('[text="Submit"]');
     expect(passField.length).toBe(1)
     expect(submitButton.length).toBe(1)
     
@@ -82,13 +82,13 @@ test('AdminOptions toggle change password', () => {
         password: "test"
     })
 
-    var changePassButton = adminOptions.find('[text="Change password"]');
+    let changePassButton = adminOptions.find('[text="Change password"]');
     expect(changePassButton.length).toBe(1);
 
     changePassButton.simulate('click');
     expect(adminOptions.state().settingPassword).toBe(true);
 
-    var cancelButton = adminOptions.find('[text="Cancel"]');
+    let cancelButton = adminOptions.find('[text="Cancel"]');
     expect(cancelButton.length).toBe(1);
 
     cancelButton.simulate('click');

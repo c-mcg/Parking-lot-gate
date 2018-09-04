@@ -3,7 +3,7 @@ import {VIEWS} from '../util/constants'
 
 import store from './store';
 
-var gateTimeout = 0;
+let gateTimeout = 0;
 
 export const OPEN_GATE = "OPEN_GATE";
 export const CLOSE_GATE = "CLOSE_GATE"
@@ -65,7 +65,8 @@ export const removeTicket = (dispatch, ticket) => {
 
 export const SET_ADMIN_PASSWORD = "SET_ADMIN_PASSWORD";
 export const setAdminPassword = (dispatch, payload) => {
-    var realPass = store.getState().adminPassword;
+    const realPass = store.getState().adminPassword;
+
     if (realPass !== null && (!payload.currentPassword  || payload.currentPassword !== realPass)) {
         return false;
     }

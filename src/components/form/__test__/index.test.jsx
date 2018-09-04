@@ -9,11 +9,11 @@ import TextField from '../text-field'
 import Button from '../button'
 
 test('Form injectedChildren', () => {
-    var ogOnChange = jest.fn();
-    var ogOnClick = jest.fn();
-    var onSubmit = jest.fn();
+    let ogOnChange = jest.fn();
+    let ogOnClick = jest.fn();
+    let onSubmit = jest.fn();
 
-    var form = mount(
+    let form = mount(
         <Form onSubmit={onSubmit}>
             [
                 <TextField key={0} name="test" onChange={ogOnChange} value=""/>,
@@ -22,12 +22,12 @@ test('Form injectedChildren', () => {
         </Form>
     )
 
-    var field = form.find('input[type="text"]');
+    let field = form.find('input[type="text"]');
     expect(field.props().onChange).not.toBe(ogOnChange);
 
     form.instance().onValueChanged('test', 'a');
 
-    var event = {preventDefault: jest.fn()};
+    let event = {preventDefault: jest.fn()};
     form.instance().onSubmit(event);
 
     expect(event.preventDefault).toBeCalled();

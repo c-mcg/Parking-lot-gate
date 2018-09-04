@@ -4,7 +4,7 @@
 
 import Quagga from 'quagga'
 
-var callbacks = [];//To clear on stopScan
+const callbacks = [];//To clear on stopScan
 
 exports.stopScan = () => {
     callbacks.forEach((callback) => {
@@ -26,7 +26,7 @@ exports.scanImage = (src, callback=null) => {
 
 exports.startScanning = (onResult=null, onError=null) => {
 
-    var callback = (data) => {
+    const callback = (data) => {
         onResult && onResult(data);
 
         if (callbacks.includes(callback)) {

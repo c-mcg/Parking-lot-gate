@@ -15,27 +15,28 @@ const STARTING_RATE = 3.00;
 
 //Don't need to hide because of absolute app
 function createImage(width, height, createFunc) {
-    var canvas = document.createElement('canvas');
+    const canvas = document.createElement('canvas');
+
     canvas.width = width;
     canvas.height = height;
-    var ctx = canvas.getContext('2d');
 
-    createFunc(ctx);
+    createFunc(canvas.getContext('2d'));
 
     return canvas.toDataURL();
 }
 
 //Don't need to hide because of absoltute app
 function generateBarcode() {
-    var id = uniqid();
+    const id = uniqid();
 
-    var body = document.body || document.querySelector('body');
-    var img = document.createElement('img');
+    const body = document.body || document.querySelector('body');
+    const img = document.createElement('img');
 
     img.id = 'temp-barcode-img-' + id;
     body.appendChild(img);
 
-    var error = true;
+    let error = true;
+
     try {
         JsBarcode('#' + img.id, id, {
             format: "CODE39",
@@ -117,10 +118,10 @@ export default class Ticket {
             this._endTime = new Date();
         }
 
-        var visitLength = (this.endTime.getTime() - this.startTime.getTime());
+        const visitLength = (this.endTime.getTime() - this.startTime.getTime());
 
-        var rateIndex = 0;
-        var rate = STARTING_RATE;
+        let rateIndex = 0;
+        let rate = STARTING_RATE;
 
         while (visitLength > RATE_TIME_LENGTHS[rateIndex]) {
             rate *= 1.5;
@@ -132,7 +133,8 @@ export default class Ticket {
     }
 
     generateImage(onSuccess, onError) {
-        var barcode = generateBarcode();
+        const barcode = generateBarcode();
+
         if (!barcode) {
             onError && onError();
             return;
@@ -140,7 +142,8 @@ export default class Ticket {
 
         this._barcode = barcode; 
 
-        var barcodeImg = new Image();
+        const barcodeImg = new Image();
+
         barcodeImg.addEventListener('load', (() => {
 
             const width = 600;
@@ -149,7 +152,7 @@ export default class Ticket {
             const fontSize = 32;
             const lineHeight = 48;
 
-            var ticketImg = createImage(width, height, (ctx) =>  {
+            this._ticketImg = createImage(width, height, (ctx) =>  {
 
                 ctx.fillStyle = "#FFFFFF";
 
@@ -158,7 +161,8 @@ export default class Ticket {
                 ctx.fillStyle = "#000000"
                 ctx.font = fontSize + "px Palanquin Dark"
 
-                var x = height / 2 - (lineHeight / 2);
+                let x = height / 2 - (lineHeight / 2);
+
                 ctx.fillText(formatDate(this.startTime), 50, x);
 
                 x += lineHeight
@@ -168,16 +172,14 @@ export default class Ticket {
 
             })
 
-            this._ticketImg = ticketImg;
             onSuccess && onSuccess();
         }).bind(this))
+
         barcodeImg.addEventListener('error', () => {
             onError && onError();
         })
-        barcodeImg.src = barcode.image;
 
+        barcodeImg.src = barcode.image;
     }
 
 }
-
-

@@ -72,9 +72,9 @@ class LeaveOptions extends React.Component {
     onBarcodeScanned(result) {
         if(result.codeResult) {
 
-            var id = result.codeResult.code;
+            let id = result.codeResult.code;
 
-            var ticket = this.props.tickets[id];
+            let ticket = this.props.tickets[id];
 
             if (!ticket) {
                 this.setState({
@@ -110,7 +110,7 @@ class LeaveOptions extends React.Component {
             stopScan();
         }
 
-        var scanError = scanning ? this.state.scanError : false;
+        let scanError = scanning ? this.state.scanError : false;
 
         this.setState({
             scanning,
@@ -130,11 +130,11 @@ class LeaveOptions extends React.Component {
     }
 
     onUploadChanged(e) {
-        var _this = this;
-        var files = e.target.files;
+        let _this = this;
+        let files = e.target.files;
 
         if (FileReader && files && files.length !== 0) {
-            var reader = new FileReader();
+            let reader = new FileReader();
             reader.onload = function () {
                 scanImage(reader.result, _this.onBarcodeScanned)
             };

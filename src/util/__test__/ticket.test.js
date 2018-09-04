@@ -8,8 +8,8 @@ import {ONE_HOUR_IN_MS} from '../constants'
 
 test('Ticket create and end', () => {
     
-    var checkTicket = (hours, rate) => {
-        var ticket = new Ticket();
+    const checkTicket = (hours, rate) => {
+        const ticket = new Ticket();
 
         expect(ticket.barcode).toBe(null);
         expect(ticket.image).toBe(null);
@@ -29,7 +29,7 @@ test('Ticket create and end', () => {
 })
 
 test('Ticket images', () => {
-    var ticket = new Ticket();
+    const ticket = new Ticket();
 
     ticket.generateImage(() => {
         expect(ticket.image).not.toBe(null);

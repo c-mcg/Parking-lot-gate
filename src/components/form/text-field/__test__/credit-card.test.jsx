@@ -7,10 +7,10 @@ configure({ adapter: new Adapter() });
 import CreditCardField from '../credit-card'
 
 test('CreditCardField onChange', () => {
-    var onChange = jest.fn();
-    var field = mount(<CreditCardField onChange={onChange}/>);
+    let onChange = jest.fn();
+    let field = mount(<CreditCardField onChange={onChange}/>);
 
-    var input = field.find('input[type="text"]')
+    let input = field.find('input[type="text"]')
     expect(input.length).toBe(1);
 
     input.simulate('change', {

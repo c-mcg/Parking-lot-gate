@@ -36,14 +36,14 @@ function createShallow(state) {
 }
 
 test('EnterOptions generate ticket', () => {
-    var state = {
+    let state = {
         generatedTicket: null,
         tickets: {},
     }
 
     const enterOptions = createShallow(state);
 
-    var createTicketButton = enterOptions.find('[text="Create ticket"]');
+    let createTicketButton = enterOptions.find('[text="Create ticket"]');
     expect(createTicketButton.length).toBe(1);
 
     createTicketButton.simulate('click');
@@ -52,7 +52,7 @@ test('EnterOptions generate ticket', () => {
 })
 
 test('EnterOptions generate ticket lot full', () => {
-    var state = {
+    let state = {
         generatedTicket: null,
         tickets: {0: jest.fn()},
         lotSize: 1
@@ -60,7 +60,7 @@ test('EnterOptions generate ticket lot full', () => {
 
     const enterOptions = createShallow(state);
 
-    var createTicketButton = enterOptions.find('[text="Create ticket"]');
+    let createTicketButton = enterOptions.find('[text="Create ticket"]');
     expect(createTicketButton.length).toBe(0);
 
     enterOptions.instance().createTicket();
@@ -70,22 +70,22 @@ test('EnterOptions generate ticket lot full', () => {
 
 test('EnterOptions download ticket', () => {
 
-    var ticket = new TicketMock();
+    let ticket = new TicketMock();
 
-    var state = {
+    let state = {
         generatedTicket: ticket,
         tickets: {}
     }
 
-    var store = createMockStore(state);
+    let store = createMockStore(state);
 
     const enterOptions = createShallow(state);
 
-    var downloadButton = enterOptions.find('[text="Download"]');
+    let downloadButton = enterOptions.find('[text="Download"]');
     expect(downloadButton.length).toBe(1);
 
-    var appendChild = jest.fn()
-    var removeChild = jest.fn()
+    let appendChild = jest.fn()
+    let removeChild = jest.fn()
 
     document.body.appendChild = appendChild;
     document.body.removeChild = removeChild;
@@ -94,7 +94,7 @@ test('EnterOptions download ticket', () => {
 
     expect(appendChild).toBeCalled
 
-    var downloadLink = appendChild.mock.calls[0][0]
+    let downloadLink = appendChild.mock.calls[0][0]
     expect(downloadLink.href).toBeTruthy();
     expect(downloadLink.download).toBeTruthy();
 
@@ -104,9 +104,9 @@ test('EnterOptions download ticket', () => {
 
 test('EnterOptions print ticket', () => {
 
-    var ticket = new TicketMock();
+    let ticket = new TicketMock();
 
-    var state = {
+    let state = {
         gatOpen: true,
         generatedTicket: ticket,
         tickets: {}
@@ -115,12 +115,12 @@ test('EnterOptions print ticket', () => {
     const enterOptions = createShallow(state);
     const instance = enterOptions.instance();
 
-    var printButton = enterOptions.find('[text="Print"]');
+    let printButton = enterOptions.find('[text="Print"]');
     expect(printButton.length).toBe(1);
 
-    var open = global.open = jest.fn();
+    let open = global.open = jest.fn();
 
-    var mockWindow = {
+    let mockWindow = {
         document: {
             write: jest.fn()
         },

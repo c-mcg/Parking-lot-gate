@@ -26,8 +26,9 @@ const initialState = {
 
 const rootReducer = (state = initialState, action) => {
 
-    var newState = null;
-    var tickets = null;
+    let newState = null;
+    let tickets = null;
+
     switch (action.type) {
 
         case OPEN_GATE:

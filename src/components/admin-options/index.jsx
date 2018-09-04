@@ -129,7 +129,7 @@ class AdminOptions extends React.Component {
             return;
         }
 
-        var currentPassword = sha256(salt + values.password);
+        let currentPassword = sha256(salt + values.password);
         if (currentPassword === this.props.adminPassword) {
             this.setState({currentPassword, error: false})
         } else {
@@ -170,8 +170,8 @@ class AdminOptions extends React.Component {
 
     render() {
 
-        var settingPassword = !this.props.adminPassword || this.state.settingPassword; 
-        var validated = !this.props.adminPassword || this.state.currentPassword === this.props.adminPassword;
+        let settingPassword = !this.props.adminPassword || this.state.settingPassword;
+        let validated = !this.props.adminPassword || this.state.currentPassword === this.props.adminPassword;
 
         return (
             <OptionsPane hideForGate={false} title="Admin Settings" className={cls(this, 'adminSettingsPane')}>
