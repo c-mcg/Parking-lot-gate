@@ -14,8 +14,6 @@ const mapStateToProps = (state) => {
 };
 
 class OptionsPane extends React.Component {
-        displayName: "OptionsPane";
-
     render() {
         return (
             <div className={cls(this) + ' ' + this.props.className}>

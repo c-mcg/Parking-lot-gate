@@ -32,7 +32,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 class App extends React.Component {
-        displayName: "App";
 
     constructor(props) {
         super(props);

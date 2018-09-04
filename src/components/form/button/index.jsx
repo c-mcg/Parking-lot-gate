@@ -6,7 +6,6 @@ import {cls} from "../../../util"
 import './index.less'
 
 export default class Button extends React.Component {
-        displayName: "Button";
 
     constructor(props) {
         super(props);

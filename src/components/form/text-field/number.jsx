@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import TextField from './index'
 
 export default class NumberField extends TextField {
-        displayName: "NumberField";
 
     constructor(props) {
         super(props);

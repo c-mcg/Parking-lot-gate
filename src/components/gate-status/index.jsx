@@ -14,7 +14,6 @@ const mapStateToProps = (state) => {
 };
 
 class GateStatus extends React.Component {
-        displayName: "GateStatus";
 
     render() {
         return (
@@ -28,6 +27,7 @@ class GateStatus extends React.Component {
             </div>  
         );
     }
+    
 }
 
 export default connect(mapStateToProps)(GateStatus);

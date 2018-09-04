@@ -6,7 +6,6 @@ import {splitStringIntoChunks} from "../../../util"
 import TextField from './index'
 
 export default class CreditCardField extends TextField {
-        displayName: "CreditCardField";
 
     constructor(props) {
         super(props);

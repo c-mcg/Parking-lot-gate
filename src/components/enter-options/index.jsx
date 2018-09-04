@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
 };
 
 class EnterOptions extends React.Component {
-        displayName: "EnterOptions";
+    
     constructor(props) {
         super(props);
 

@@ -6,7 +6,6 @@ import {cls} from "../../../util"
 import './index.less'
 
 export default class TextField extends React.Component {
-        displayName: "TextField";
 
     constructor(props) {
         super(props);

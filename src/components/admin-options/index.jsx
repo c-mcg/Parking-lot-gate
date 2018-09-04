@@ -50,7 +50,7 @@ const mapStateToProps = (state) => {
 };
 
 class AdminOptions extends React.Component {
-    displayName: "AdminOptions";
+    
     constructor(props) {
         super(props);
 

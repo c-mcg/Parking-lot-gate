@@ -40,7 +40,6 @@ const mapStateToProps = (state) => {
 };
 
 class LeaveOptions extends React.Component {
-        displayName: "LeaveOptions";
 
     constructor(props) {
         super(props);

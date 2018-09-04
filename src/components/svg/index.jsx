@@ -12,7 +12,6 @@ const SVGS = {
 }
 
 export default class SVG extends React.Component {
-        displayName: "SVG";
 
     render() {
 

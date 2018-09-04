@@ -6,7 +6,6 @@ import {cls} from "../../util"
 import './index.less'
 
 export default class Ticket extends React.Component {
-        displayName: "Ticket";
 
     render() {
         return (
