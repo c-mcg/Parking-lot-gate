@@ -118,6 +118,7 @@ test('LeaveOptions onSubmitPayment', () => {
             expect(error).not.toBeTruthy();
             expect(leaveOptions.state().submittingPayment).toBe(true);
         }
+        
         leaveOptions.setState({
             paymentError: false
         })
