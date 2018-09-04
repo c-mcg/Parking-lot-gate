@@ -9,7 +9,7 @@ export default class Ticket extends React.Component {
 
     render() {
 
-        var test = "";
+        var test = ""
         return (
             <div className={cls(this)}>
                 <img src={this.props.ticket.image}/>
