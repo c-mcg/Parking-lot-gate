@@ -1,3 +1,7 @@
+/*global
+    test, expect
+*/
+
 import Ticket from '../ticket'
 
 import {ONE_HOUR_IN_MS} from '../constants'

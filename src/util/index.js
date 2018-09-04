@@ -1,3 +1,6 @@
+/*global
+    exports
+*/
 
 exports.cls = function(reactInstance, subName=null, modifiers=null) {
     if (reactInstance == null) return;
@@ -27,7 +30,7 @@ exports.splitStringIntoChunks = function(str, chunkSize) {
 
     var chunks = new Array(Math.ceil(str.length / chunkSize)).fill(null);
     
-    return chunks.map((item, index) => {
+    return chunks.map(() => {
         var size = Math.min(str.length, chunkSize);
 
         var chunk = str.substring(0, size);

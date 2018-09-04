@@ -1,8 +1,4 @@
 
-import {VIEWS} from '../util/constants'
-
-import store from './store'
-
 import {
     OPEN_GATE,
     CLOSE_GATE,
@@ -29,6 +25,9 @@ const initialState = {
 };
 
 const rootReducer = (state = initialState, action) => {
+
+    var newState = null;
+    var tickets = null;
     switch (action.type) {
 
         case OPEN_GATE:
@@ -53,10 +52,10 @@ const rootReducer = (state = initialState, action) => {
                 return state;
             }
 
-            var tickets = Object.assign({}, state.tickets);
+            tickets = Object.assign({}, state.tickets);
             tickets[action.payload.id] = action.payload;
 
-            var newState = Object.assign({}, state)
+            newState = Object.assign({}, state)
             newState.tickets = tickets;
             return newState;
 
@@ -65,10 +64,10 @@ const rootReducer = (state = initialState, action) => {
                 return state;
             }
 
-            var tickets = Object.assign({}, state.tickets);
+            tickets = Object.assign({}, state.tickets);
             delete tickets[action.payload.id];
             
-            var newState = Object.assign({}, state);
+            newState = Object.assign({}, state);
             newState.tickets = tickets
             return newState;
 
@@ -77,17 +76,17 @@ const rootReducer = (state = initialState, action) => {
                 return state;
             }
 
-            var newState = Object.assign({}, state);
+            newState = Object.assign({}, state);
             newState.adminPassword = action.payload.password;
             return newState;
 
         case SET_VIEW:
-            var newState = Object.assign({}, state);
+            newState = Object.assign({}, state);
             newState.view = action.payload;
             return newState;
 
         case TOGGLE_ADMIN_SETTINGS:
-            var newState = Object.assign({}, state);
+            newState = Object.assign({}, state);
             newState.adminSettingsOpen = action.payload;
             return newState;
 
@@ -97,7 +96,7 @@ const rootReducer = (state = initialState, action) => {
                 return state;
             }
 
-            var newState = Object.assign({}, state);
+            newState = Object.assign({}, state);
             newState.lotSize = action.payload;
             return newState;
                 

@@ -1,3 +1,6 @@
+/*global
+    exports
+*/
 
 exports.onDetected = () => {
 }

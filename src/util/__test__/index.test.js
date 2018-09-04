@@ -1,3 +1,7 @@
+/*global
+    test, expect
+*/
+
 import React from 'react'
 
 import {

@@ -1,7 +1,9 @@
+/*global
+    exports
+*/
 
 import Quagga from 'quagga'
 
-var initialized = false;
 var callbacks = [];//To clear on stopScan
 
 exports.stopScan = () => {

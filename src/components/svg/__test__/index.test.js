@@ -1,3 +1,6 @@
+/*global
+    test, expect
+*/
 
 
 import {SVGS} from '../index'

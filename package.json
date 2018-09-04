@@ -15,6 +15,7 @@
     "enzyme": "^3.4.3",
     "enzyme-adapter-react-16": "^1.2.0",
     "enzyme-redux": "^0.2.1",
+    "eslint": "^5.5.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^23.5.0",
     "jest-canvas-mock": "^1.1.0",
@@ -38,7 +39,8 @@
   "scripts": {
     "test": "jest",
     "build": "webpack --watch",
-    "run": "webpack-serve --content public"
+    "run": "webpack-serve --content public",
+    "lint": "eslint src"
   },
   "author": "Connor McGrogan",
   "license": "ISC",
