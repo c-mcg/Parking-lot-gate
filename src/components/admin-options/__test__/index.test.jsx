@@ -1,4 +1,6 @@
-import React from 'react'
+/* global
+    test, expect
+*/
 
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -24,9 +26,9 @@ test('AdminOptions constructor', () => {
 })
 
 test('AdminOptions set password', () => {
-    const password = "test" ;   
+    const password = "test";
 
-    let state = {
+    const state = {
         adminPassword: null
     }
 
@@ -51,7 +53,7 @@ test('AdminOptions set password', () => {
 
     expect(adminOptions.state().error).toBeTruthy();
 
-    let passHash = instance.setAdminPassword({
+    const passHash = instance.setAdminPassword({
         password,
         passwordConfirm: password
     })
@@ -63,8 +65,8 @@ test('AdminOptions set password', () => {
 })
 
 test('AdminOptions toggle change password', () => {
-    let password = sha256(salt + "test");
-    let state = {
+    const password = sha256(salt + "test");
+    const state = {
         adminPassword: password
     }
 
@@ -73,22 +75,25 @@ test('AdminOptions toggle change password', () => {
     expect(adminOptions.state().currentPassword).toBe(null);
     expect(adminOptions.state().settingPassword).toBe(false);
 
-    let passField = adminOptions.find('[name="password"]');
-    let submitButton = adminOptions.find('[text="Submit"]');
+    const passField = adminOptions.find('[name="password"]');
+    const submitButton = adminOptions.find('[text="Submit"]');
+
     expect(passField.length).toBe(1)
     expect(submitButton.length).toBe(1)
-    
+
     adminOptions.instance().onValidatePassword({
         password: "test"
     })
 
-    let changePassButton = adminOptions.find('[text="Change password"]');
+    const changePassButton = adminOptions.find('[text="Change password"]');
+
     expect(changePassButton.length).toBe(1);
 
     changePassButton.simulate('click');
     expect(adminOptions.state().settingPassword).toBe(true);
 
-    let cancelButton = adminOptions.find('[text="Cancel"]');
+    const cancelButton = adminOptions.find('[text="Cancel"]');
+
     expect(cancelButton.length).toBe(1);
 
     cancelButton.simulate('click');

@@ -7,7 +7,7 @@ import Ticket from '../ticket'
 import {ONE_HOUR_IN_MS} from '../constants'
 
 test('Ticket create and end', () => {
-    
+
     const checkTicket = (hours, rate) => {
         const ticket = new Ticket();
 
@@ -36,7 +36,7 @@ test('Ticket images', () => {
         expect(ticket.barcode).not.toBe(null);
         expect(ticket.barcode.image).not.toBe(null);
 
-        expect(ticket.id).toBe(ticket.barcode.id);  
+        expect(ticket.id).toBe(ticket.barcode.id);
     }, () => {
         throw new Error('Could not generate ticket');
     })

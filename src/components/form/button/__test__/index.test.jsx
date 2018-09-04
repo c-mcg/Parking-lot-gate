@@ -1,4 +1,6 @@
-import React from 'react'
+/* global
+    jest, test, expect
+*/
 
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -7,17 +9,17 @@ configure({ adapter: new Adapter() });
 import Button from '../index'
 
 test('Button submit', () => {
-    let onClick = jest.fn();
-    let button = mount(<Button submit onClick={onClick}/>).find('input[type="submit"]');
+    const onClick = jest.fn();
+    const button = mount(<Button submit onClick={onClick}/>).find('input[type="submit"]');
 
     expect(button).toBeTruthy();
     expect(button.instance().onClick).not.toBe(onClick);
 })
 
 test('Button click', () => {
-    let onClick = jest.fn();
+    const onClick = jest.fn();
 
-    let clickBtn = (button) => {
+    const clickBtn = (button) => {
         expect(button).toBeTruthy();
         button.simulate('click');
     }

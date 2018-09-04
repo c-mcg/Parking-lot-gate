@@ -1,5 +1,5 @@
 /*global
-    test, expect
+    exports
 */
 
 import React from 'react';
@@ -19,7 +19,7 @@ export default class SVG extends React.Component {
 
     render() {
 
-        let svg = SVGS[this.props.name];
+        const svg = SVGS[this.props.name];
 
         if (!svg) {
             return null;

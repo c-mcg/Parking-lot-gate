@@ -1,4 +1,6 @@
-import React from 'react'
+/* global
+    jest, test, expect
+*/
 
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -9,25 +11,25 @@ import TextField from '../text-field'
 import Button from '../button'
 
 test('Form injectedChildren', () => {
-    let ogOnChange = jest.fn();
-    let ogOnClick = jest.fn();
-    let onSubmit = jest.fn();
+    const ogOnChange = jest.fn();
+    const ogOnClick = jest.fn();
+    const onSubmit = jest.fn();
 
-    let form = mount(
-        <Form onSubmit={onSubmit}>
+    const form = mount(<Form onSubmit={onSubmit}>
             [
                 <TextField key={0} name="test" onChange={ogOnChange} value=""/>,
                 <Button key={1} onClick={ogOnClick} submit/>
             ]
-        </Form>
-    )
+        </Form>)
 
-    let field = form.find('input[type="text"]');
+    const field = form.find('input[type="text"]');
+
     expect(field.props().onChange).not.toBe(ogOnChange);
 
     form.instance().onValueChanged('test', 'a');
 
-    let event = {preventDefault: jest.fn()};
+    const event = {preventDefault: jest.fn()};
+
     form.instance().onSubmit(event);
 
     expect(event.preventDefault).toBeCalled();

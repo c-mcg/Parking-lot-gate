@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux'
 
@@ -28,7 +27,9 @@ const mapDispatchToProps = (dispatch) => {
             removeTicket(dispatch, ticket);
             setScannedTicket(dispatch, null)
         },
-        setScannedTicket: (ticket) => {setScannedTicket(dispatch, ticket)}
+        setScannedTicket: (ticket) => {
+ setScannedTicket(dispatch, ticket)
+}
     };
 };
 
@@ -65,16 +66,16 @@ class LeaveOptions extends React.Component {
     onUploadClicked() {
         this.cancelScan(() => {
             //Check here is for tests
-            this.refs.upload && this.refs.upload.click();  
+            this.refs.upload && this.refs.upload.click();
         })
     }
 
     onBarcodeScanned(result) {
         if(result.codeResult) {
 
-            let id = result.codeResult.code;
+            const id = result.codeResult.code;
 
-            let ticket = this.props.tickets[id];
+            const ticket = this.props.tickets[id];
 
             if (!ticket) {
                 this.setState({
@@ -91,9 +92,9 @@ class LeaveOptions extends React.Component {
                 this.props.setScannedTicket(ticket);
             })
 
-        } else {
-            console.log("not detected");
         }
+
+        stopScan();
     }
 
     onScanDetected(data) {
@@ -105,12 +106,12 @@ class LeaveOptions extends React.Component {
     }
 
     cancelScan(callback=null, scanning=false) {
-        
+
         if (this.state.scanning) {
             stopScan();
         }
 
-        let scanError = scanning ? this.state.scanError : false;
+        const scanError = scanning ? this.state.scanError : false;
 
         this.setState({
             scanning,
@@ -130,14 +131,16 @@ class LeaveOptions extends React.Component {
     }
 
     onUploadChanged(e) {
-        let _this = this;
-        let files = e.target.files;
+        const that = this;
+        const files = e.target.files;
 
         if (FileReader && files && files.length !== 0) {
-            let reader = new FileReader();
+            const reader = new FileReader();
+
             reader.onload = function () {
-                scanImage(reader.result, _this.onBarcodeScanned)
+                scanImage(reader.result, that.onBarcodeScanned)
             };
+
             reader.readAsDataURL(files[0]);
         }
     }
@@ -198,7 +201,7 @@ class LeaveOptions extends React.Component {
                     <video id="scan-video" className={cls(this, 'video')}/>
 
                     {this.state.scanning &&
-                        <SVG className={cls(this, 'loading')} name='loading'/>
+                        <SVG className={cls(this, 'loading')} name="loading"/>
                     }
 
                     {this.state.scanError &&
@@ -226,17 +229,15 @@ class LeaveOptions extends React.Component {
                                 </div>
                             }
 
-                            {this.state.submittingPayment ?
-                                <SVG className={cls(this, 'loading')} name='loading'/>
-                            :
-                                <Button submit text="Pay ticket"/>   
+                            {this.state.submittingPayment
+                                ? <SVG className={cls(this, 'loading')} name="loading"/>
+                            :                                <Button submit text="Pay ticket"/>
                             }
                         </Form>
                     }
 
 
-
-                    <input ref="upload" type='file' accept="image/*" className={cls(this, 'upload')} onChange={this.onUploadChanged}/>
+                    <input ref="upload" type="file" accept="image/*" className={cls(this, 'upload')} onChange={this.onUploadChanged}/>
                 </div>
             </OptionsPane>
         );

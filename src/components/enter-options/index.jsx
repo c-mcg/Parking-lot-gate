@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux'
 
@@ -21,7 +20,9 @@ const mapDispatchToProps = (dispatch) => {
             openGate(dispatch, ticket);
             setGeneratedTicket(dispatch, null)
         },
-        setGeneratedTicket: (ticket) => {setGeneratedTicket(dispatch, ticket);},
+        setGeneratedTicket: (ticket) => {
+ setGeneratedTicket(dispatch, ticket);
+},
     };
 };
 
@@ -33,7 +34,7 @@ const mapStateToProps = (state) => {
 };
 
 class EnterOptions extends React.Component {
-    
+
     constructor(props) {
         super(props);
 
@@ -47,13 +48,13 @@ class EnterOptions extends React.Component {
     }
 
     //param ticket for testing
-    createTicket(e) {
+    createTicket() {
 
         if (this.props.lotFull) {
             return;
         }
 
-        let ticket = new Ticket();
+        const ticket = new Ticket();
 
         ticket.generateImage(
             () =>  {
@@ -65,7 +66,7 @@ class EnterOptions extends React.Component {
             },
             () => this.setState({error: 'Could not generate ticket'})
         );
-        
+
     }
 
     downloadTicket() {
@@ -74,7 +75,8 @@ class EnterOptions extends React.Component {
             return;
         }
 
-        let downloadLink = document.createElement("a");
+        const downloadLink = document.createElement("a");
+
         downloadLink.href = this.props.ticket.image;
         downloadLink.download = "ticket.png";
 
@@ -91,7 +93,8 @@ class EnterOptions extends React.Component {
             return;
         }
 
-        let popup = window.open();
+        const popup = window.open();
+
         popup.document.write("<img src='" + this.props.ticket.image + "'/>");
         popup.focus(); //required for IE
         popup.print()

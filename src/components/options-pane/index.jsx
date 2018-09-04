@@ -21,13 +21,18 @@ class OptionsPane extends React.Component {
                     {this.props.title}
                 </div>
 
-                {this.props.hideForGate && this.props.gateOpen ?
-                    <div className={cls(this, 'message')}>Please drive through the gate</div>
-                :
-                    this.props.children
+                {this.props.hideForGate &&
+                    (() => {
+
+                        if (this.props.gateOpen) {
+                            return <div className={cls(this, 'message')}>Please drive through the gate</div>
+                        }
+
+                        return this.props.children
+                    })()
                 }
 
-            </div>  
+            </div>
         );
     }
 }

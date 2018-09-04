@@ -1,11 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import sha256 from 'sha256'
 
 import {connect} from 'react-redux'
 
-import { 
+import {
     setAdminPassword,
     setView,
     toggleAdminSettings,
@@ -14,7 +13,6 @@ import {
 
 import OptionsPane from '../options-pane'
 import Button from '../form/button'
-import TextField from '../form/text-field'
 import Form from '../form'
 import PasswordField from '../form/text-field/password'
 import NumberField from '../form/text-field/number'
@@ -50,7 +48,7 @@ const mapStateToProps = (state) => {
 };
 
 class AdminOptions extends React.Component {
-    
+
     constructor(props) {
         super(props);
 
@@ -90,7 +88,7 @@ class AdminOptions extends React.Component {
             })
             return;
         }
-        
+
         values.password = sha256(salt + values.password);
         values.passwordConfirm = sha256(salt + values.passwordConfirm);
 
@@ -129,7 +127,8 @@ class AdminOptions extends React.Component {
             return;
         }
 
-        let currentPassword = sha256(salt + values.password);
+        const currentPassword = sha256(salt + values.password);
+
         if (currentPassword === this.props.adminPassword) {
             this.setState({currentPassword, error: false})
         } else {
@@ -170,8 +169,8 @@ class AdminOptions extends React.Component {
 
     render() {
 
-        let settingPassword = !this.props.adminPassword || this.state.settingPassword;
-        let validated = !this.props.adminPassword || this.state.currentPassword === this.props.adminPassword;
+        const settingPassword = !this.props.adminPassword || this.state.settingPassword;
+        const validated = !this.props.adminPassword || this.state.currentPassword === this.props.adminPassword;
 
         return (
             <OptionsPane hideForGate={false} title="Admin Settings" className={cls(this, 'adminSettingsPane')}>
@@ -180,7 +179,7 @@ class AdminOptions extends React.Component {
                     {!validated &&
                         <Form onSubmit={this.onValidatePassword}>
                             <PasswordField autoFocus
-                                label="Admin Password" 
+                                label="Admin Password"
                                 name="password"/>
 
                             <div className={cls(this, 'error')}>
@@ -192,13 +191,13 @@ class AdminOptions extends React.Component {
 
                     {validated &&
                         <div>
-                            {settingPassword && 
+                            {settingPassword &&
                                 <Form onSubmit={this.setAdminPassword}>
                                     <PasswordField autoFocus name="password" label="New password"/>
 
                                     <PasswordField name="passwordConfirm" label="Confirm password"/>
 
-                                    {this.props.adminPassword && 
+                                    {this.props.adminPassword &&
                                         <PasswordField name="currentPassword" label="Old password"/>
                                     }
 
@@ -223,7 +222,7 @@ class AdminOptions extends React.Component {
                                     </div>
 
                                     <Form onSubmit={this.onChangeLotSize}>
-                                        <NumberField name="lotSize" label={'Lot Size: ' + this.props.lotSize}/> 
+                                        <NumberField name="lotSize" label={'Lot Size: ' + this.props.lotSize}/>
                                         <Button submit text="Change lot size"/>
                                     </Form>
 
@@ -233,7 +232,7 @@ class AdminOptions extends React.Component {
                             }
 
                         </div>
-                    }                        
+                    }
                 </div>
             </OptionsPane>
         );

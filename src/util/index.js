@@ -32,7 +32,7 @@ exports.splitStringIntoChunks = function(str, chunkSize) {
     }
 
     const chunks = new Array(Math.ceil(str.length / chunkSize)).fill(null);
-    
+
     return chunks.map(() => {
         const size = Math.min(str.length, chunkSize);
         const chunk = str.substring(0, size);

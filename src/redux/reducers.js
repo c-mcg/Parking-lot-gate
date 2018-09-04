@@ -67,7 +67,7 @@ const rootReducer = (state = initialState, action) => {
 
             tickets = Object.assign({}, state.tickets);
             delete tickets[action.payload.id];
-            
+
             newState = Object.assign({}, state);
             newState.tickets = tickets
             return newState;
@@ -100,7 +100,7 @@ const rootReducer = (state = initialState, action) => {
             newState = Object.assign({}, state);
             newState.lotSize = action.payload;
             return newState;
-                
+
     }
 
     return state;

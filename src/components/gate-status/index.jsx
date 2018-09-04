@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux'
 
@@ -24,10 +23,10 @@ class GateStatus extends React.Component {
                 })}>
                     {this.props.open ? 'Open' : 'Closed'}
                 </span>
-            </div>  
+            </div>
         );
     }
-    
+
 }
 
 export default connect(mapStateToProps)(GateStatus);

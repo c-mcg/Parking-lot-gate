@@ -1,4 +1,6 @@
-import React from 'react'
+/* global
+    jest, test, expect
+*/
 
 import { configure, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -7,15 +9,16 @@ configure({ adapter: new Adapter() });
 import NumberField from '../number'
 
 test('NumberField onChange', () => {
-    let onChange = jest.fn();
-    let field = mount(<NumberField onChange={onChange}/>);
+    const onChange = jest.fn();
+    const field = mount(<NumberField onChange={onChange}/>);
 
-    let input = field.find('input[type="text"]')
+    const input = field.find('input[type="text"]')
+
     expect(input.length).toBe(1);
 
     input.simulate('change', {
         target: {
-            value: "tt" 
+            value: "tt"
         }
     })
     expect(onChange).not.toBeCalled();
@@ -23,7 +26,7 @@ test('NumberField onChange', () => {
 
     input.simulate('change', {
         target: {
-            value: "9" 
+            value: "9"
         }
     })
     expect(onChange).toBeCalledWith('9');

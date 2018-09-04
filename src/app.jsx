@@ -8,7 +8,6 @@ import {VIEWS} from './util/constants'
 import {toggleAdminSettings} from "./redux/actions";
 
 import GateStatus from './components/gate-status'
-import OptionsPane from './components/options-pane'
 import EnterOptions from './components/enter-options'
 import LeaveOptions from './components/leave-options'
 import AdminOptions from './components/admin-options'
@@ -50,9 +49,9 @@ class App extends React.Component {
     }
 
     onKeyDown(e) {
-        if (e.which === 69 && e.ctrlKey && e.shiftKey) {//ctrl + shift + e
+        if (e.which === 69 && e.ctrlKey && e.shiftKey) { //ctrl + shift + e
             this.props.toggleAdminSettings(!this.props.adminSettingsOpen);
-            
+
             e.preventDefault();
             e.stopPropagation();
         }
@@ -68,19 +67,19 @@ class App extends React.Component {
                 }
 
                 {this.props.adminPassword && this.props.view !== -1 &&
-                    <GateStatus/>   
+                    <GateStatus/>
                 }
 
-                {(this.props.view === VIEWS.both || this.props.view === VIEWS.enter) && this.props.adminPassword && 
+                {(this.props.view === VIEWS.both || this.props.view === VIEWS.enter) && this.props.adminPassword &&
                     <EnterOptions/>
                 }
 
-                {(this.props.view === VIEWS.both || this.props.view === VIEWS.leave) && this.props.adminPassword && 
+                {(this.props.view === VIEWS.both || this.props.view === VIEWS.leave) && this.props.adminPassword &&
                     <LeaveOptions/>
                 }
             </div>
         );
     }
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

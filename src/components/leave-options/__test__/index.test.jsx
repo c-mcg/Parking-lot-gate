@@ -1,4 +1,6 @@
-import React from 'react'
+/* global
+    expect, test
+*/
 
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -14,24 +16,26 @@ function createShallow(state, store=null) {
 }
 
 test('LeaveOptions onUploadClicked', () => {
-    let leaveOptions = createShallow({
+    const leaveOptions = createShallow({
         scanning: true
     })
 
-    let uploadTicketButton = leaveOptions.find('[text="Upload ticket"]');
+    const uploadTicketButton = leaveOptions.find('[text="Upload ticket"]');
+
     expect(uploadTicketButton.length).toBe(1);
 
-   
+
     uploadTicketButton.simulate('click');
     expect(leaveOptions.state().scanning).toBe(false);
 })
 
 test('LeaveOptions onScanClicked', () => {
-    let leaveOptions = createShallow({
+    const leaveOptions = createShallow({
         scanning: true
     })
 
-    let scanTicketButton = leaveOptions.find('[text="Scan ticket"]');
+    const scanTicketButton = leaveOptions.find('[text="Scan ticket"]');
+
     expect(scanTicketButton.length).toBe(1);
 
     scanTicketButton.simulate('click');
@@ -44,12 +48,12 @@ test('LeaveOptions onScanClicked', () => {
 test('LeaveOptions onBarcodeScanned', () => {
     const validId = "123";
 
-    let leaveOptions = createShallow({
+    const leaveOptions = createShallow({
         tickets: {123: "mockTicket"},
         scanning: true,
     })
 
-    let instance = leaveOptions.instance();
+    const instance = leaveOptions.instance();
 
     instance.onBarcodeScanned({codeResult: {code: false}});
     expect(leaveOptions.state().scanning).toBe(false);
@@ -62,8 +66,8 @@ test('LeaveOptions onBarcodeScanned', () => {
 
 test('LeaveOptions onSubmitPayment', () => {
 
-    let leaveOptions = createShallow()
-    let ticket = {
+    const leaveOptions = createShallow()
+    const ticket = {
         rate: 0
     }
 
@@ -76,9 +80,9 @@ test('LeaveOptions onSubmitPayment', () => {
     expect(leaveOptions.find('[name="securityCode"]').length).toBe(1);
     expect(leaveOptions.find('[text="Pay ticket"]').length).toBe(1);
 
-    let instance = leaveOptions.instance();
+    const instance = leaveOptions.instance();
 
-    let testData = [
+    const testData = [
         {
             data: {
                 name: ""
@@ -91,14 +95,16 @@ test('LeaveOptions onSubmitPayment', () => {
                 cardNumber: "123"
             },
             error: true
-        },{
+        },
+{
             data: {
                 name: "test",
                 cardNumber: "1111222233334444",
                 securityCode: "1"
             },
             error: true
-        },{
+        },
+{
             data: {
                 name: "test",
                 cardNumber: "1111222233334444",
@@ -110,7 +116,7 @@ test('LeaveOptions onSubmitPayment', () => {
 
     testData.forEach((call) => {
         instance.onSubmitPayment(call.data);
-        let error = leaveOptions.state().paymentError;
+        const error = leaveOptions.state().paymentError;
 
         if (call.error) {
             expect(error).toBeTruthy();
@@ -118,7 +124,7 @@ test('LeaveOptions onSubmitPayment', () => {
             expect(error).not.toBeTruthy();
             expect(leaveOptions.state().submittingPayment).toBe(true);
         }
-        
+
         leaveOptions.setState({
             paymentError: false
         })

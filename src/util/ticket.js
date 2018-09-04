@@ -109,7 +109,7 @@ export default class Ticket {
     }
 
     get rate() {
-        
+
         if (this._rate) {
             return this._rate;
         }
@@ -140,7 +140,7 @@ export default class Ticket {
             return;
         }
 
-        this._barcode = barcode; 
+        this._barcode = barcode;
 
         const barcodeImg = new Image();
 

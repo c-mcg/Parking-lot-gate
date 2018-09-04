@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import {cls} from "../../util"
 
@@ -9,11 +8,12 @@ export default class Ticket extends React.Component {
 
     render() {
 
-        var test = ""
+        let test;
+
         return (
             <div className={cls(this)}>
                 <img src={this.props.ticket.image}/>
-            </div> 
+            </div>
         );
     }
 }

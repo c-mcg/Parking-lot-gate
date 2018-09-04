@@ -15,11 +15,11 @@ export default class Button extends React.Component {
 
     render() {
         return (
-            <input 
-                type={this.props.submit ? "submit" : "button"} 
+            <input
+                type={this.props.submit ? "submit" : "button"}
                 name={this.props.id}
-                onClick={this.props.submit ? null : this.props.onClick} 
-                className={cls(this) + ' ' + this.props.className} 
+                onClick={this.props.submit ? null : this.props.onClick}
+                className={cls(this) + ' ' + this.props.className}
                 value={this.props.text}/>
         );
     }
