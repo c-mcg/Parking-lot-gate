@@ -122,7 +122,6 @@ class AdminOptions extends React.Component {
     }
 
     onValidatePassword(values) {
-        console.log(values)
         if (!values.password || values.password === "") {
             this.setState({
                 error: "You must enter a password"
