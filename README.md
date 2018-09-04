@@ -5,7 +5,8 @@ Written with React, Redux and Less, as well as Jest and Enzyme for testing
 ## Setup
 
 `npm install` in project folder
-Optional: Copy files in `.githooks` to `.git/hooks/`
+
+For automatic linting: Copy files in `.githooks` to `.git/hooks/`
 
 ## Running
 
