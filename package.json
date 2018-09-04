@@ -40,7 +40,8 @@
     "test": "jest",
     "build": "webpack --watch",
     "run": "webpack-serve --content public",
-    "lint": "./node_modules/.bin/eslint --fix --ext .jsx,.js src"
+    "lint": "./node_modules/.bin/eslint --fix --ext .jsx,.js src",
+    "lint-file": "./node_modules/.bin/eslint --fix --ext .jsx,.js"
   },
   "author": "Connor McGrogan",
   "license": "ISC",
