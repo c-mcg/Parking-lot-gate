@@ -27,15 +27,14 @@ export default class Form extends React.Component {
     }
 
     componentDidMount() {
-        var values = {};
-        this.props.children.forEach((child) => {
-            if (componentInstanceOf(child, TextField) && child.props.name) {
-                values[child.props.name] = "";
-            }
-        })
-        this.setState({
-            values
-        })
+        this.setState(
+            this.props.children.reduce((state, child) => {
+                if (componentInstanceOf(child, TextField) && child.props.name) {
+                    state[child.props.name] = "";
+                }
+                return state;
+            }, {})
+        )
     }
 
     onValueChanged(name, value) {
@@ -68,7 +67,6 @@ export default class Form extends React.Component {
                     this.onValueChanged(childName, value);
                 }
                 overrideProps.value = this.state.values[childName];
-
                 
             } else if (!componentInstanceOf(child, Button)) {
                 return child;
