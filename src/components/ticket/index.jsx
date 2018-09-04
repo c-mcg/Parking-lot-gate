@@ -8,6 +8,8 @@ import './index.less'
 export default class Ticket extends React.Component {
 
     render() {
+
+        var test = "";
         return (
             <div className={cls(this)}>
                 <img src={this.props.ticket.image}/>
