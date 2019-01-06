@@ -43,7 +43,7 @@
     "lint": "./node_modules/.bin/eslint --fix --ext .jsx,.js src",
     "lint-file": "./node_modules/.bin/eslint --fix --ext .jsx,.js"
   },
-  "author": "Connor McGrogan",
+  "author": "Nik M",
   "license": "ISC",
   "jest": {
     "setupFiles": [
